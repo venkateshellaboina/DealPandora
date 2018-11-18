@@ -25,11 +25,11 @@ app.use(function (req, res, next) {
 );
 
 var ProductSchema = new Schema({
-    productId: {type:Number},
+    productId: {type:String},
     productName: {type:String},
     productCategory: {type:String},
     productSpecification : {type:String},
-    productPrice : {type:Number},
+    productPrice : {type:String},
     productImageURL : {type:String},
     productSearchTextURL : {type:String}
 
@@ -56,7 +56,7 @@ var BankSchema = new Schema ({
 })
 
 var OfferSchema = new Schema ({
-    productId: {type: Number},
+    productId: {type: String},
     bankId : {type : Number},
     productDiscountPrice : {type: String}
 })
