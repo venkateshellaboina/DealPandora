@@ -45,19 +45,19 @@ var CardSchema = new Schema({
     cardTag  :{type:String},
     cardNo: {type:String},
     nameOnCard : {type:String},
-    month :{type: Number},
-    year : {type: Number},
-    bankId : {type: Number}
+    month :{type: String},
+    year : {type: String},
+    bankId : {type: String}
 })
 
 var BankSchema = new Schema ({
-    bankId : {type: Number},
+    bankId : {type: String},
     bankName : {type : String}
 })
 
 var OfferSchema = new Schema ({
     productId: {type: String},
-    bankId : {type : Number},
+    bankId : {type : String},
     productDiscountPrice : {type: String}
 })
 
@@ -69,7 +69,7 @@ var OfferModel = mongoose.model("offer",OfferSchema);
 var CardModel = mongoose.model("card",CardSchema);
 
 app.get("/getProducts",(req,res)=>{
-    ProductModel.findOne({productId:"123"})
+    ProductModel.find()
     .exec((err,result)=>{
         if(err){
             res.status(404).send(err);
@@ -82,8 +82,31 @@ app.get("/getProducts",(req,res)=>{
     })
 })
 
-app.get("/getOffers/:productId",(req,res)=>{
-    OfferModel.find({productId: req.params.productId})
+app.post("/addProducts",(req,res)=>{
+   
+    
+    var item = new ProductModel({
+        productId: req.body.productId,
+        productName: req.body.productName,
+        productCategory:req.body.productCategory,
+        productSpecification : req.body.productSpecification,
+        productPrice : req.body.productPrice
+    })
+    item.save((err,result)=>{
+        if(err){
+            res.status(404).send(err);
+            res.end();
+        }
+        else{
+            res.send(result);
+            res.end();
+        }
+    })
+})
+
+app.post("/getOffers",(req,res)=>{
+    let id= req.body.productId;
+    OfferModel.find({'productId': id})
     .exec((err,result)=>{
         if(err){
             res.send(err);
