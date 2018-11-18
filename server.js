@@ -68,7 +68,7 @@ var BankModel = mongoose.model("bank",BankSchema);
 var OfferModel = mongoose.model("offer",OfferSchema);
 var CardModel = mongoose.model("card",CardSchema);
 
-app.get("http://localhost:5000/getProducts",(req,res)=>{
+app.get("/getProducts",(req,res)=>{
     ProductModel.findOne({productId:"123"})
     .exec((err,result)=>{
         if(err){
@@ -82,7 +82,7 @@ app.get("http://localhost:5000/getProducts",(req,res)=>{
     })
 })
 
-app.get("http://localhost:5000/getOffers/:productId",(req,res)=>{
+app.get("/getOffers/:productId",(req,res)=>{
     OfferModel.find({productId: req.params.productId})
     .exec((err,result)=>{
         if(err){
@@ -97,7 +97,7 @@ app.get("http://localhost:5000/getOffers/:productId",(req,res)=>{
     })
 })
 
-app.post("http://localhost:5000/addCard",(req,res)=>{
+app.post("/addCard",(req,res)=>{
     CardModel.create({
         userName : req.body.name,
         cardNo: req.body.cardNo,
