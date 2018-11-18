@@ -63,7 +63,7 @@ class Checkout extends Component{
               >
                   <h1>Bank:{infarr.bankId}</h1>
                  <h1>Discount Price:{infarr.productDiscountPrice}</h1>
-                 <Button>pay</Button>
+                <Link to={`/payment`}> <Button>pay</Button> </Link>
               </Card>
               </div>
             
@@ -73,7 +73,7 @@ class Checkout extends Component{
                  </div>
                  </Col>
                  <Col span={6}>
-                   <Route path={}
+                  
                  </Col>
                  </Row>
                 

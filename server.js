@@ -132,4 +132,19 @@ app.post("/addCard",(req,res)=>{
 
 })
 
+app.post("/getBankProducts",(req,res)=>{
+    let id= req.body.bankId;
+    OfferModel.find({'bankId': id})
+    .exec((err,result)=>{
+        if(err){
+            res.send(err);
+            res.end();
+        }
+        else{
+            res.send(result);
+            res.end();
+        }
+
+    })
+})
 
